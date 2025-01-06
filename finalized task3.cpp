@@ -33,6 +33,7 @@ void drawScene() {
     glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity(); // Reset the drawing perspective
     glMatrixMode(GL_MODELVIEW);
+    glClearColor(0.5f, 0.8f, 1.0f, 1.0f);
     gluOrtho2D(0, 200, 0, 200);
 
     // ground
@@ -179,12 +180,6 @@ int main(int argc, char **argv) {
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(800, 600);
     glutCreateWindow("City");
-
-    glClearColor(0.5f, 0.8f, 1.0f, 1.0f); // Set background color (sky blue)
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-
-
     glutDisplayFunc(drawScene);
     glutTimerFunc(20, update, 0); // Add a timer
 
