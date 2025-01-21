@@ -57,19 +57,11 @@ void drawScene() {
     glPushMatrix();
     glTranslatef(cloud1X, 0.0f, 0.0f);
     glColor3f(0.956f, 0.8f, 0.976f);
-    drawCircle(300.0f, 800.0f, 50.0f);
-    drawCircle(250.0f, 800.0f, 75.0f);
-    drawCircle(200.0f, 800.0f, 50.0f);
+    drawCircle(290.0f, 800.0f, 25.0f);
+    drawCircle(250.0f, 800.0f, 35.0f);
+    drawCircle(210.0f, 800.0f, 25.0f);
     glPopMatrix();
 
-    //right cloud
-    glPushMatrix();
-    glTranslatef(cloud2X, 0.0f, 0.0f);
-    glColor3f(0.956f, 0.8f, 0.976f);
-    drawCircle(500.0f, 750.0f, 50.0f);
-    drawCircle(550.0f, 750.0f, 75.0f);
-    drawCircle(600.0f, 750.0f, 50.0f);
-    glPopMatrix();
 
 
     // buildings
@@ -204,7 +196,93 @@ void drawScene() {
     //3rd Building
     glColor3f(0.721f, 0.698f, 1.0f);
     drawRectangle(240.0f, 0.0f, 140.0f, 575.0f);
+        //Right Side
+        glColor3f(0.988f, 0.72f, 0.921f);
+        glBegin(GL_QUADS);
+        glVertex2f(380, 575);
+        glVertex2f(400, 580);
+        glVertex2f(400, 0);
+        glVertex2f(380, 0);
+        glEnd();
+        //Upper
+        glColor3f(0.988f, 0.72f, 0.921f);
+        glBegin(GL_QUADS);
+        glVertex2f(380, 575);
+        glVertex2f(400, 580);
+        glVertex2f(250, 580);
+        glVertex2f(240, 575);
+        glEnd();
 
+        //Windows
+        //1st row
+        drawRectangle(250,500,15,40);
+        drawRectangle(275,500,15,40);
+        drawRectangle(300,500,15,40);
+        drawRectangle(325,500,15,40);
+        drawRectangle(350,500,15,40);
+
+        //2nd row
+        drawRectangle(250,450,15,40);
+        drawRectangle(275,450,15,40);
+        drawRectangle(300,450,15,40);
+        drawRectangle(325,450,15,40);
+        drawRectangle(350,450,15,40);
+
+        //3rd row
+        drawRectangle(250,400,15,40);
+        drawRectangle(275,400,15,40);
+        drawRectangle(300,400,15,40);
+        drawRectangle(325,400,15,40);
+        drawRectangle(350,400,15,40);
+
+        //4th row
+        drawRectangle(250,350,15,40);
+        drawRectangle(275,350,15,40);
+        drawRectangle(300,350,15,40);
+        drawRectangle(325,350,15,40);
+        drawRectangle(350,350,15,40);
+
+        //5th row
+        drawRectangle(250,300,15,40);
+        drawRectangle(275,300,15,40);
+        drawRectangle(300,300,15,40);
+        drawRectangle(325,300,15,40);
+        drawRectangle(350,300,15,40);
+
+        //6th row
+        drawRectangle(250,250,15,40);
+        drawRectangle(275,250,15,40);
+        drawRectangle(300,250,15,40);
+        drawRectangle(325,250,15,40);
+        drawRectangle(350,250,15,40);
+
+        //7th row
+        drawRectangle(250,200,15,40);
+        drawRectangle(275,200,15,40);
+        drawRectangle(300,200,15,40);
+        drawRectangle(325,200,15,40);
+        drawRectangle(350,200,15,40);
+
+        //8th row
+        drawRectangle(250,150,15,40);
+        drawRectangle(275,150,15,40);
+        drawRectangle(300,150,15,40);
+        drawRectangle(325,150,15,40);
+        drawRectangle(350,150,15,40);
+
+        //9th row
+        drawRectangle(250,100,15,40);
+        drawRectangle(275,100,15,40);
+        drawRectangle(300,100,15,40);
+        drawRectangle(325,100,15,40);
+        drawRectangle(350,100,15,40);
+
+        //last row
+        drawRectangle(250,50,15,40);
+        drawRectangle(275,50,15,40);
+        drawRectangle(300,50,15,40);
+        drawRectangle(325,50,15,40);
+        drawRectangle(350,50,15,40);
     //First bulding Below
         //Upper Pillar
         glColor3f(0.76f, 0.75f, 0.992f);
@@ -273,6 +351,14 @@ void drawScene() {
         glEnd();
 
 
+    //right cloud
+    glPushMatrix();
+    glTranslatef(cloud2X, 0.0f, 0.0f);
+    glColor3f(0.956f, 0.8f, 0.976f);
+    drawCircle(500.0f, 750.0f, 30.0f);
+    drawCircle(550.0f, 750.0f, 45.0f);
+    drawCircle(600.0f, 750.0f, 30.0f);
+    glPopMatrix();
 
     // Flyover
     //Black
@@ -282,7 +368,7 @@ void drawScene() {
 
     //white
     glColor3f(0.96f, 0.835f, 0.917f);
-    drawRectangle(0.0f, 145.0f, 1000.0f, 40.0f);
+    drawRectangle(0.0f, 155.0f, 1000.0f, 30.0f);
 
     //Pillar1
     glColor3f(0.96f, 0.835f, 0.917f);
@@ -554,7 +640,7 @@ void update(int value) {
 int main(int argc, char **argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-    glutInitWindowSize(1920, 1000);
+    glutInitWindowSize(1920, 1080);
     glutCreateWindow("City");
     glutDisplayFunc(drawScene);
     glutTimerFunc(20, update, 0); // Add a timer
