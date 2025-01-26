@@ -45,8 +45,27 @@ void drawScene() {
     glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity(); // Reset the drawing perspective
     glMatrixMode(GL_MODELVIEW);
-    glClearColor(0.80f, 0.717f, 1.0f, 1.0f);
+    glClearColor(0.803f, 0.717f, 1.0f, 1.0f);
     gluOrtho2D(0, 1000, 0, 1000);
+
+
+    //Sky Ray
+    glColor3f(0.780f, 0.694f, 0.976f);
+    glBegin(GL_QUADS);
+    glVertex2f(800, 1000);
+    glVertex2f(995, 1000);
+    glVertex2f(450, 0);
+    glVertex2f(200, 0);
+    glEnd();
+
+    //Sky Dark Ray
+    glColor3f(0.757f, 0.663f, 1.0f);
+    glBegin(GL_QUADS);
+    glVertex2f(995, 1000);
+    glVertex2f(1000, 1000);
+    glVertex2f(1000, 0);
+    glVertex2f(450, 0);
+    glEnd();
 
     // sun
     glColor3f(0.956f, 0.9f, 0.976f);
@@ -62,8 +81,33 @@ void drawScene() {
     glPopMatrix();
 
 
-
     // buildings
+        //Building Far left
+        glColor3f(0.373f, 0.341f, 0.729f);
+        drawRectangle(0.0f, 0.0f, 100.0f, 600.0f);
+
+        //Building far 2nd left
+        glColor3f(0.373f, 0.341f, 0.729f);
+        drawRectangle(100.0f, 0.0f, 100.0f, 650.0f);
+        //3rd
+        glColor3f(0.373f, 0.341f, 0.729f);
+        drawRectangle(200.0f, 0.0f, 100.0f, 780.0f);
+        glColor3f(0.373f, 0.341f, 0.729f);
+        drawRectangle(300.0f, 0.0f, 100.0f, 650.0f);
+
+        //4th
+        glColor3f(0.373f, 0.341f, 0.729f);
+        drawRectangle(500.0f, 0.0f, 200.0f, 580.0f);
+        glColor3f(0.373f, 0.341f, 0.729f);
+        drawRectangle(500.0f, 0.0f, 100.0f, 650.0f);
+
+        //5th
+        glColor3f(0.373f, 0.341f, 0.729f);
+        drawRectangle(750.0f, 0.0f, 100.0f, 450.0f);
+        glColor3f(0.373f, 0.341f, 0.729f);
+        drawRectangle(800.0f, 0.0f, 100.0f, 650.0f);
+
+
 
 
         //building above
@@ -77,6 +121,15 @@ void drawScene() {
         //First building on the left
         glColor3f(0.70f, 0.69f, 0.98f);
         drawRectangle(40.0f, 0.0f, 60.0f, 700.0f);
+        //Shadow
+        glColor3f(0.647f, 0.627f, 0.945f);
+        glBegin(GL_QUADS);
+        glVertex2f(40, 700);
+        glVertex2f(100, 500);
+        glVertex2f(100, 0);
+        glVertex2f(40, 0);
+        glEnd();
+
 
         //building left
         glColor3f(0.4f, 0.39f, 0.76f);
@@ -202,6 +255,13 @@ void drawScene() {
         //main body
         glColor3f(0.298f, 0.267f, 0.609f);
         drawRectangle(630.0f, 0.0f, 120.0f, 860.0f);
+        //shadow
+        glColor3f(0.337f, 0.318f, 0.663f);
+        glBegin(GL_TRIANGLES);
+        glVertex2f(630, 860);
+        glVertex2f(750, 860);
+        glVertex2f(750, 400);
+        glEnd();
 
         //Windows
         //1st row
@@ -362,13 +422,46 @@ void drawScene() {
         glVertex2f(670, 390);
         glEnd();
 
+
+        //11th row
+        glColor3f(0.463f, 0.427f, 0.847f);
+        drawRectangle(640.0f, 310.0f, 100.0f, 30.0f);
         glLineWidth(1);
         glColor3f(0.0f, 0.0f, 0.0f);
         glBegin(GL_LINES);
-        glVertex2f(710, 760);
-        glVertex2f(710, 790);
+        glVertex2f(670, 310);
+        glVertex2f(670, 340);
         glEnd();
 
+        //12th row
+        glColor3f(0.463f, 0.427f, 0.847f);
+        drawRectangle(640.0f, 260.0f, 100.0f, 30.0f);
+        glLineWidth(1);
+        glColor3f(0.0f, 0.0f, 0.0f);
+        glBegin(GL_LINES);
+        glVertex2f(670, 260);
+        glVertex2f(670, 290);
+        glEnd();
+
+        //13 th row
+        glColor3f(0.463f, 0.427f, 0.847f);
+        drawRectangle(640.0f, 210.0f, 100.0f, 30.0f);
+        glLineWidth(1);
+        glColor3f(0.0f, 0.0f, 0.0f);
+        glBegin(GL_LINES);
+        glVertex2f(670, 210);
+        glVertex2f(670, 240);
+        glEnd();
+
+        //14 th row
+        glColor3f(0.463f, 0.427f, 0.847f);
+        drawRectangle(640.0f, 160.0f, 100.0f, 30.0f);
+        glLineWidth(1);
+        glColor3f(0.0f, 0.0f, 0.0f);
+        glBegin(GL_LINES);
+        glVertex2f(670, 160);
+        glVertex2f(670, 190);
+        glEnd();
 
 
     //4th building
@@ -381,10 +474,32 @@ void drawScene() {
         glVertex2f(520, 0);
         glEnd();
         //left Block
-        glColor3f(0.502f, 0.419f, 0.886f);
+        glColor3f(0.529f, 0.443f, 0.937f);
         drawRectangle(370.0f, 0.0f, 140.0f, 700.0f);
 
-        //Windows
+
+
+        //right block upper
+        glColor3f(0.553f, 0.361f, 0.851f);
+        glBegin(GL_QUADS);
+        glVertex2f(510, 500);
+        glVertex2f(520, 520);
+        glVertex2f(660, 520);
+        glVertex2f(660, 0);
+        glEnd();
+        //Right block
+        glColor3f(0.529f, 0.443f, 0.937f);
+        drawRectangle(510.0f, 0.0f, 140.0f, 500.0f);
+        //Shadow
+        glColor3f(0.502f, 0.419f, 0.886f);
+        glBegin(GL_QUADS);
+        glVertex2f(370, 700);
+        glVertex2f(370, 0);
+        glVertex2f(650, 0);
+        glVertex2f(650,270);
+        glEnd();
+
+        //Left Block windows
         glColor3f(0.643f, 0.631f, 0.925f);
         drawRectangle(380.0f, 630.0f, 15.0f, 45.0f);
 
@@ -485,19 +600,7 @@ void drawScene() {
 
         glColor3f(0.643f, 0.631f, 0.925f);
         drawRectangle(490.0f, -10.0f, 15.0f, 45.0f);
-
-
-        //right block upper
-        glColor3f(0.553f, 0.361f, 0.851f);
-        glBegin(GL_QUADS);
-        glVertex2f(510, 500);
-        glVertex2f(520, 520);
-        glVertex2f(660, 520);
-        glVertex2f(660, 0);
-        glEnd();
-        //Right block
-        glColor3f(0.502f, 0.419f, 0.886f);
-        drawRectangle(510.0f, 0.0f, 140.0f, 500.0f);
+        //Right block window
 
         //1st row
         glColor3f(0.643f, 0.631f, 0.925f);
@@ -582,8 +685,16 @@ void drawScene() {
 
     //3rd Building
     //main body
-        glColor3f(0.713f, 0.709f, 1.0f);
+        glColor3f(0.647f, 0.631f, 0.941f);
         drawRectangle(240.0f, 0.0f, 140.0f, 575.0f);
+        //Shadow
+        glColor3f(0.717f, 0.701f, 1.0f);
+        glBegin(GL_TRIANGLES);
+        glVertex2f(270, 575);
+        glVertex2f(380, 575);
+        glVertex2f(380, 400);
+        glEnd();
+
         //Right Side
         glColor3f(0.988f, 0.72f, 0.921f);
         glBegin(GL_QUADS);
@@ -786,42 +897,49 @@ void drawScene() {
     //7th Building Tower
         //Main Body
         glColor3f(0.498f, 0.409f, 0.886f);
-        drawRectangle(880.0f, 0.0f, 120.0f, 750.0f);
+        drawRectangle(870.0f, 0.0f, 120.0f, 750.0f);
+        //shadow
+        glColor3f(0.529f, 0.439f, 0.941f);
+        glBegin(GL_TRIANGLES);
+        glVertex2f(890, 750);
+        glVertex2f(990, 750);
+        glVertex2f(990, 500);
+        glEnd();
 
         //Windows1
         glColor3f(0.294f, 0.274f, 0.604f);
-        drawRectangle(895.0f, 0.0f, 15.0f, 730.0f);
+        drawRectangle(885.0f, 0.0f, 15.0f, 730.0f);
 
         //Windows2
         glColor3f(0.294f, 0.274f, 0.604f);
-        drawRectangle(920.0f, 0.0f, 15.0f, 730.0f);
+        drawRectangle(910.0f, 0.0f, 15.0f, 730.0f);
 
         //Windows3
         glColor3f(0.294f, 0.274f, 0.604f);
-        drawRectangle(945.0f, 0.0f, 15.0f, 730.0f);
+        drawRectangle(935.0f, 0.0f, 15.0f, 730.0f);
 
         //Windows
         glColor3f(0.294f, 0.274f, 0.604f);
-        drawRectangle(970.0f, 0.0f, 15.0f, 730.0f);
+        drawRectangle(960.0f, 0.0f, 15.0f, 730.0f);
 
         //Upper railing
         glColor3f(0.294f, 0.274f, 0.604f);
-        drawRectangle(890.0f, 750.0f, 100.0f, 20.0f);
+        drawRectangle(880.0f, 750.0f, 100.0f, 20.0f);
 
         //Upper upper Railing
         glColor3f(0.498f, 0.409f, 0.886f);
-        drawRectangle(925.0f, 770.0f, 30.0f, 10.0f);
+        drawRectangle(915.0f, 770.0f, 30.0f, 10.0f);
 
         //Upper upper Railing
         glColor3f(0.294f, 0.274f, 0.604f);
-        drawRectangle(938.0f, 780.0f, 5.0f, 70.0f);
+        drawRectangle(928.0f, 780.0f, 5.0f, 70.0f);
 
         //Top Triangle
         glBegin(GL_TRIANGLES);
         glColor3f(0.294f, 0.274f, 0.604f);
-        glVertex2f(938,850);
-        glVertex2f(940.5,860);
-        glVertex2f(943,850);
+        glVertex2f(928,850);
+        glVertex2f(930.5,860);
+        glVertex2f(933,850);
         glEnd();
 
     //6th Building with glasses
@@ -1216,6 +1334,175 @@ void drawScene() {
         glVertex2f(950, 207);
         glEnd();
 
+        //Left Window
+        //Top left part
+        glColor3f(0.345f, 0.204f, 0.549f);
+        glBegin(GL_QUADS);
+        glVertex2f(700, 225);
+        glVertex2f(715, 225);
+        glVertex2f(715, 310);
+        glVertex2f(700, 310);
+        glEnd();
+        //middle angular part
+        glColor3f(0.345f, 0.204f, 0.549f);
+        glBegin(GL_QUADS);
+        glVertex2f(715, 225);
+        glVertex2f(750, 240);
+        glVertex2f(750, 310);
+        glVertex2f(715, 310);
+        glEnd();
+
+        //Middle part
+        drawRectangle(700,240,220,70);
+        //right part
+        glBegin(GL_QUADS);
+        glVertex2f(920, 240);
+        glVertex2f(950, 270);
+        glVertex2f(950, 310);
+        glVertex2f(920, 310);
+        glEnd();
+
+        //Purple shadow on window
+        glColor3f(0.396f, 0.231f, 0.624f);
+        glBegin(GL_QUADS);
+        glVertex2f(700, 225);
+        glVertex2f(715, 225);
+        glVertex2f(715, 250);
+        glVertex2f(700, 250);
+        glEnd();
+
+        //Purple shadow on window
+        glColor3f(0.396f, 0.231f, 0.624f);
+        glBegin(GL_QUADS);
+        glVertex2f(715, 225);
+        glVertex2f(750, 240);
+        glVertex2f(750, 265);
+        glVertex2f(715, 250);
+        glEnd();
+
+        //Purple shadow on window
+        glColor3f(0.396f, 0.231f, 0.624f);
+        glBegin(GL_QUADS);
+        glVertex2f(750, 240);
+        glVertex2f(920, 240);
+        glVertex2f(920, 265);
+        glVertex2f(750, 265);
+        glEnd();
+
+        //Purple shadow on window
+        glColor3f(0.396f, 0.231f, 0.624f);
+        glBegin(GL_QUADS);
+        glVertex2f(920, 240);
+        glVertex2f(950, 270);
+        glVertex2f(950, 295);
+        glVertex2f(920, 265);
+        glEnd();
+
+        //Lines On window
+        glLineWidth(1);
+        glColor3f(0.0f, 0.0f, 0.0f);
+        glBegin(GL_LINES);
+        glVertex2f(750, 240);
+        glVertex2f(750, 310);
+        glEnd();
+
+        //Lines On window
+        glLineWidth(1);
+        glColor3f(0.0f, 0.0f, 0.0f);
+        glBegin(GL_LINES);
+        glVertex2f(800, 240);
+        glVertex2f(800, 310);
+        glEnd();
+
+        //Lines On window
+        glLineWidth(1);
+        glColor3f(0.0f, 0.0f, 0.0f);
+        glBegin(GL_LINES);
+        glVertex2f(860, 240);
+        glVertex2f(860, 310);
+        glEnd();
+
+
+        //Lines On window
+        glLineWidth(1);
+        glColor3f(0.0f, 0.0f, 0.0f);
+        glBegin(GL_LINES);
+        glVertex2f(920, 240);
+        glVertex2f(920, 310);
+        glEnd();
+
+        //Lines On window
+        glLineWidth(1);
+        glColor3f(0.0f, 0.0f, 0.0f);
+        glBegin(GL_LINES);
+        glVertex2f(750, 300);
+        glVertex2f(920, 300);
+        glEnd();
+
+        //Stripes On glass
+        glLineWidth(1);
+        glColor3f(1.0f, 1.0f, 1.0f);
+        glBegin(GL_LINES);
+        glVertex2f(740, 270);
+        glVertex2f(730, 300);
+        glEnd();
+
+        glLineWidth(1);
+        glColor3f(1.0f, 1.0f, 1.0f);
+        glBegin(GL_LINES);
+        glVertex2f(735, 270);
+        glVertex2f(728, 290);
+        glEnd();
+
+        //Stripes On glass
+        glLineWidth(1);
+        glColor3f(1.0f, 1.0f, 1.0f);
+        glBegin(GL_LINES);
+        glVertex2f(790, 270);
+        glVertex2f(780, 300);
+        glEnd();
+
+        glLineWidth(1);
+        glColor3f(1.0f, 1.0f, 1.0f);
+        glBegin(GL_LINES);
+        glVertex2f(785, 270);
+        glVertex2f(778, 290);
+        glEnd();
+
+        //Stripes On glass
+        glLineWidth(1);
+        glColor3f(1.0f, 1.0f, 1.0f);
+        glBegin(GL_LINES);
+        glVertex2f(850, 270);
+        glVertex2f(840, 300);
+        glEnd();
+
+        glLineWidth(1);
+        glColor3f(1.0f, 1.0f, 1.0f);
+        glBegin(GL_LINES);
+        glVertex2f(845, 270);
+        glVertex2f(838, 290);
+        glEnd();
+
+        //Stripes On glass
+        glLineWidth(1);
+        glColor3f(1.0f, 1.0f, 1.0f);
+        glBegin(GL_LINES);
+        glVertex2f(915, 270);
+        glVertex2f(905, 300);
+        glEnd();
+
+        glLineWidth(1);
+        glColor3f(1.0f, 1.0f, 1.0f);
+        glBegin(GL_LINES);
+        glVertex2f(910, 270);
+        glVertex2f(902, 290);
+        glEnd();
+
+
+
+
+
 
     glPopMatrix();
 
@@ -1249,6 +1536,15 @@ void drawScene() {
         glVertex2f(80, 250);
         glEnd();
 
+        //Yellow Shadow
+        glBegin(GL_QUADS);
+        glColor3f(0.882f, 0.647f, 0.443f);
+        glVertex2f(80, 250);
+        glVertex2f(140, 250);
+        glVertex2f(140, 260);
+        glVertex2f(80, 260);
+        glEnd();
+
         //Right Window
         glColor3f(0.956f, 0.749f, 0.545f);
         glBegin(GL_POLYGON);
@@ -1258,6 +1554,54 @@ void drawScene() {
         glVertex2f(157, 285);
         glVertex2f(140, 285);
         glEnd();
+        //yellow shadow
+        glBegin(GL_QUADS);
+        glColor3f(0.882f, 0.647f, 0.443f);
+        glVertex2f(140, 250);
+        glVertex2f(155, 255);
+        glVertex2f(155, 265);
+        glVertex2f(140, 260);
+        glEnd();
+
+        glBegin(GL_QUADS);
+        glColor3f(0.882f, 0.647f, 0.443f);
+        glVertex2f(155, 255);
+        glVertex2f(165, 260);
+        glVertex2f(162, 270);
+        glVertex2f(155, 265);
+        glEnd();
+
+        //Stripes On glass
+        glLineWidth(1);
+        glColor3f(1.0f, 1.0f, 1.0f);
+        glBegin(GL_LINES);
+        glVertex2f(97, 270);
+        glVertex2f(100, 260);
+        glEnd();
+
+        glLineWidth(1);
+        glColor3f(1.0f, 1.0f, 1.0f);
+        glBegin(GL_LINES);
+        glVertex2f(100, 275);
+        glVertex2f(105, 260);
+        glEnd();
+
+         //Stripes On glass
+        glLineWidth(1);
+        glColor3f(1.0f, 1.0f, 1.0f);
+        glBegin(GL_LINES);
+        glVertex2f(130, 270);
+        glVertex2f(133, 260);
+
+        glEnd();
+
+        glLineWidth(1);
+        glColor3f(1.0f, 1.0f, 1.0f);
+        glBegin(GL_LINES);
+        glVertex2f(133, 275);
+        glVertex2f(138, 260);
+        glEnd();
+
 
         //door knob
         glLineWidth(5);
@@ -1309,16 +1653,16 @@ void drawScene() {
         //wheels
         //Left White Wheel Circle
         glColor3f(1.0f, 1.0f, 1.0f);
-        drawCircle(96.0f, 205.0f, 13.0f);
+        drawCircle(96.0f, 203.0f, 13.0f);
         //LEft Inner Black Wheel Circle
         glColor3f(0.0f, 0.0f, 0.0f);
-        drawCircle(96.0f, 205.0f, 8.0f);
+        drawCircle(96.0f, 203.0f, 8.0f);
         //Right Black Wheel Circle
         glColor3f(1.0f, 1.0f, 1.0f);
-        drawCircle(160.0f, 205.0f, 13.0f);
+        drawCircle(160.0f, 203.0f, 13.0f);
         //Right Inner White Wheel Circle
         glColor3f(0.0f, 0.0f, 0.0f);
-        drawCircle(160.0f, 205.0f, 8.0f);
+        drawCircle(160.0f, 203.0f, 8.0f);
 
     glPopMatrix();
 
@@ -1331,7 +1675,7 @@ void drawScene() {
 
 void handleKeypress(unsigned char key, int x, int y) {
     if (key == 'd' || key == 'D') {
-       carX += 5.0f;
+       carX += 10.0f;
         if (carX > 1000.0f) {
             carX = -200.0f;
         }
@@ -1339,7 +1683,7 @@ void handleKeypress(unsigned char key, int x, int y) {
     }
 
     if (key == 'a' || key == 'A') {
-       carX -= 5.0f;
+       carX -= 7.0f;
         if (carX < -200.0f) {
             carX = 1000.0f;
         }
@@ -1353,13 +1697,18 @@ void update(int value) {
         cloud1X = 1010.0f;
     }
 
+    busX -= 5.0f;
+    if (busX < -1000.0f) {
+        busX = 300.0f;
+    }
+
     cloud2X -= 5.0f;
     if (cloud2X < -1030.0f) {
         cloud2X = 1010.0f;
     }
 
     glutPostRedisplay(); // Notify GLUT that the display has changed
-    glutTimerFunc(10, update, 0); // Notify GLUT to call update again in 10 milliseconds
+    glutTimerFunc(20, update, 0); // Notify GLUT to call update again in 10 milliseconds
 }
 
 
