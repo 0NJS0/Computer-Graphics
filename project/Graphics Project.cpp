@@ -8,6 +8,9 @@ float cloud1X = 500.0f;
 float cloud2X = 750.0f;
 float carX = 0.0f;
 float busX= 0.0f;
+float birdX = 0.0f;
+float birdWingAngle = 0.0f;
+bool birdWingDirection = true;
 
 void drawCircle(float centerX, float centerY, float radius) {
     glBegin(GL_POLYGON);
@@ -41,6 +44,32 @@ void drawRectangle(int x, int y, int width, int height) {
     glEnd();
 }
 
+void drawBird(float x, float y) {
+    glColor3f(0.0f, 0.0f, 0.0f);
+
+    // Body of the bird
+    glBegin(GL_POLYGON);
+    glVertex2f(x, y);
+    glVertex2f(x + 5, y + 2);
+    glVertex2f(x + 10, y);
+    glVertex2f(x + 5, y - 2);
+    glEnd();
+
+    // Left wing
+    glBegin(GL_POLYGON);
+    glVertex2f(x, y);
+    glVertex2f(x - 7, y + 5);
+    glVertex2f(x - 7 + birdWingAngle / 2, y + 18);
+    glEnd();
+
+    // Right wing
+    glBegin(GL_POLYGON);
+    glVertex2f(x, y);
+    glVertex2f(x + 7, y + 5);
+    glVertex2f(x + 7 - birdWingAngle / 2, y + 17);
+    glEnd();
+}
+
 void drawScene() {
     glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity(); // Reset the drawing perspective
@@ -49,22 +78,15 @@ void drawScene() {
     gluOrtho2D(0, 1000, 0, 1000);
 
 
-    //Sky Ray
-    glColor3f(0.780f, 0.694f, 0.976f);
-    glBegin(GL_QUADS);
-    glVertex2f(800, 1000);
-    glVertex2f(995, 1000);
-    glVertex2f(450, 0);
-    glVertex2f(200, 0);
-    glEnd();
+
 
     //Sky Dark Ray
     glColor3f(0.757f, 0.663f, 1.0f);
     glBegin(GL_QUADS);
-    glVertex2f(995, 1000);
-    glVertex2f(1000, 1000);
+    glVertex2f(1000, 600);
+    glVertex2f(0, 600);
+    glVertex2f(0, 0);
     glVertex2f(1000, 0);
-    glVertex2f(450, 0);
     glEnd();
 
     // sun
@@ -78,6 +100,15 @@ void drawScene() {
     drawCircle(290.0f, 800.0f, 25.0f);
     drawCircle(250.0f, 800.0f, 35.0f);
     drawCircle(210.0f, 800.0f, 25.0f);
+    glPopMatrix();
+
+    //right cloud
+    glPushMatrix();
+    glTranslatef(cloud2X, 0.0f, 0.0f);
+    glColor3f(0.956f, 0.8f, 0.976f);
+    drawCircle(500.0f, 750.0f, 30.0f);
+    drawCircle(550.0f, 750.0f, 45.0f);
+    drawCircle(600.0f, 750.0f, 30.0f);
     glPopMatrix();
 
 
@@ -1093,15 +1124,6 @@ void drawScene() {
         drawRectangle(680.0f, 250.0f, 250.0f, 5.0f);
 
 
-    //right cloud
-    glPushMatrix();
-    glTranslatef(cloud2X, 0.0f, 0.0f);
-    glColor3f(0.956f, 0.8f, 0.976f);
-    drawCircle(500.0f, 750.0f, 30.0f);
-    drawCircle(550.0f, 750.0f, 45.0f);
-    drawCircle(600.0f, 750.0f, 30.0f);
-    glPopMatrix();
-
     // Flyover
     //Black
     glColor3f(0.0f, 0.0f, 0.0f);
@@ -1506,7 +1528,18 @@ void drawScene() {
 
     glPopMatrix();
 
+    //Birds
+     glPushMatrix();
+    glTranslatef(birdX, 0.0f, 0.0f);
 
+    drawBird(25,800);
+    drawBird(45,820);
+    drawBird(65,795);
+    drawBird(85,790);
+    drawBird(5,785);
+
+
+    glPopMatrix();
     // car
         glPushMatrix();
         glTranslatef(carX, 0.0f, 0.0f);
@@ -1706,6 +1739,25 @@ void update(int value) {
     if (cloud2X < -1030.0f) {
         cloud2X = 1010.0f;
     }
+
+    birdX += 4.0f;
+    if (birdX > 1000) {
+        birdX = -200.0f;
+    }
+
+    if (birdWingDirection) {
+        birdWingAngle += 2.0f;
+        if (birdWingAngle > 20.0f) {
+            birdWingDirection = false;
+        }
+    } else {
+        birdWingAngle -= 2.0f;
+        if (birdWingAngle < -20.0f) {
+            birdWingDirection = true;
+        }
+    }
+
+
 
     glutPostRedisplay(); // Notify GLUT that the display has changed
     glutTimerFunc(20, update, 0); // Notify GLUT to call update again in 10 milliseconds
