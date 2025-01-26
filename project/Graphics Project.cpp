@@ -47,8 +47,8 @@ void drawRectangle(int x, int y, int width, int height) {
 void drawBird(float x, float y) {
     glColor3f(0.0f, 0.0f, 0.0f);
 
-    // Body of the bird
-    glBegin(GL_POLYGON);
+    // Body
+    glBegin(GL_QUADS);
     glVertex2f(x, y);
     glVertex2f(x + 5, y + 2);
     glVertex2f(x + 10, y);
@@ -56,14 +56,14 @@ void drawBird(float x, float y) {
     glEnd();
 
     // Left wing
-    glBegin(GL_POLYGON);
+    glBegin(GL_TRIANGLES);
     glVertex2f(x, y);
     glVertex2f(x - 7, y + 5);
     glVertex2f(x - 7 + birdWingAngle / 2, y + 18);
     glEnd();
 
     // Right wing
-    glBegin(GL_POLYGON);
+    glBegin(GL_TRIANGLES);
     glVertex2f(x, y);
     glVertex2f(x + 7, y + 5);
     glVertex2f(x + 7 - birdWingAngle / 2, y + 17);
@@ -1747,20 +1747,20 @@ void update(int value) {
 
     if (birdWingDirection) {
         birdWingAngle += 2.0f;
-        if (birdWingAngle > 20.0f) {
+        if (birdWingAngle > 10.0f) {
             birdWingDirection = false;
         }
     } else {
         birdWingAngle -= 2.0f;
-        if (birdWingAngle < -20.0f) {
+        if (birdWingAngle < -10.0f) {
             birdWingDirection = true;
         }
     }
 
 
 
-    glutPostRedisplay(); // Notify GLUT that the display has changed
-    glutTimerFunc(20, update, 0); // Notify GLUT to call update again in 10 milliseconds
+    glutPostRedisplay();
+    glutTimerFunc(16, update, 0);
 }
 
 
@@ -1773,7 +1773,7 @@ int main(int argc, char **argv) {
 
     glutDisplayFunc(drawScene);
     glutKeyboardFunc(handleKeypress);
-    glutTimerFunc(20, update, 0);
+    glutTimerFunc(16, update, 0);
 
     glutMainLoop();
     return 0;
