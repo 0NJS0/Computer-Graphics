@@ -1575,59 +1575,59 @@ void drawDawnScene() {
         // Car1 pink body
         glColor3f(0.925f, 0.408f, 0.980f);
         glBegin(GL_POLYGON);
-        glVertex2f(75, 290);
+        glVertex2f(235, 290);
         glVertex2f(155, 290);
-        glVertex2f(165, 260);
-        glVertex2f(180, 250);
-        glVertex2f(180, 210);
-        glVertex2f(75, 210);
+        glVertex2f(145, 260);
+        glVertex2f(130, 250);
+        glVertex2f(130, 210);
+        glVertex2f(235, 210);
         glEnd();
 
         //bumper
         glColor3f(0.321f, 0.207f, 0.505f);
-        drawRectangle(73,205,108,5);
+        drawRectangle(128,205,108,5);
 
         //Left Window
         glColor3f(0.956f, 0.749f, 0.545f);
         glBegin(GL_QUADS);
-        glVertex2f(80, 285);
-        glVertex2f(140, 285);
-        glVertex2f(140, 250);
-        glVertex2f(80, 250);
+        glVertex2f(230, 285);
+        glVertex2f(170, 285);
+        glVertex2f(170, 250);
+        glVertex2f(230, 250);
         glEnd();
 
         //Yellow Shadow
         glBegin(GL_QUADS);
         glColor3f(0.882f, 0.647f, 0.443f);
-        glVertex2f(80, 250);
-        glVertex2f(140, 250);
-        glVertex2f(140, 260);
-        glVertex2f(80, 260);
+        glVertex2f(230, 250);
+        glVertex2f(170, 250);
+        glVertex2f(170, 260);
+        glVertex2f(230, 260);
         glEnd();
 
         //Right Window
-        glColor3f(0.956f, 0.749f, 0.545f);
+       glColor3f(0.956f, 0.749f, 0.545f);
         glBegin(GL_POLYGON);
-        glVertex2f(140, 250);
+        glVertex2f(170, 250);
         glVertex2f(155, 260);
-        glVertex2f(165, 260);
-        glVertex2f(157, 285);
-        glVertex2f(140, 285);
+        glVertex2f(145, 260);
+        glVertex2f(153, 285);
+        glVertex2f(170, 285);
         glEnd();
         //yellow shadow
         glBegin(GL_QUADS);
         glColor3f(0.882f, 0.647f, 0.443f);
-        glVertex2f(140, 250);
+        glVertex2f(170, 250);
         glVertex2f(155, 255);
         glVertex2f(155, 265);
-        glVertex2f(140, 260);
+        glVertex2f(170, 260);
         glEnd();
 
         glBegin(GL_QUADS);
         glColor3f(0.882f, 0.647f, 0.443f);
         glVertex2f(155, 255);
-        glVertex2f(165, 260);
-        glVertex2f(162, 270);
+        glVertex2f(145, 260);
+        glVertex2f(148, 270);
         glVertex2f(155, 265);
         glEnd();
 
@@ -1635,31 +1635,31 @@ void drawDawnScene() {
         glLineWidth(1);
         glColor3f(1.0f, 1.0f, 1.0f);
         glBegin(GL_LINES);
-        glVertex2f(97, 270);
-        glVertex2f(100, 260);
+        glVertex2f(215, 270);
+        glVertex2f(218, 260);
         glEnd();
 
         glLineWidth(1);
         glColor3f(1.0f, 1.0f, 1.0f);
         glBegin(GL_LINES);
-        glVertex2f(100, 275);
-        glVertex2f(105, 260);
+        glVertex2f(210, 275);
+        glVertex2f(214, 260);
         glEnd();
 
          //Stripes On glass
         glLineWidth(1);
         glColor3f(1.0f, 1.0f, 1.0f);
         glBegin(GL_LINES);
-        glVertex2f(130, 270);
-        glVertex2f(133, 260);
+        glVertex2f(170, 270);
+        glVertex2f(173, 260);
 
         glEnd();
 
         glLineWidth(1);
         glColor3f(1.0f, 1.0f, 1.0f);
         glBegin(GL_LINES);
-        glVertex2f(133, 275);
-        glVertex2f(138, 260);
+        glVertex2f(173, 275);
+        glVertex2f(178, 260);
         glEnd();
 
 
@@ -1667,8 +1667,8 @@ void drawDawnScene() {
         glLineWidth(5);
         glColor3f(0.0f, 0.0f, 0.0f);
         glBegin(GL_LINES);
-        glVertex2f(113, 243);
-        glVertex2f(122, 243);
+        glVertex2f(175, 243);
+        glVertex2f(184, 243);
         glEnd();
 
 
@@ -1676,36 +1676,36 @@ void drawDawnScene() {
         glLineWidth(3);
         glColor3f(0.0f, 0.0f, 0.0f);
         glBegin(GL_LINES);
-        glVertex2f(110, 285);
-        glVertex2f(110, 250);
+        glVertex2f(172, 285);
+        glVertex2f(172, 250);
         glEnd();
 
         glLineWidth(3);
         glColor3f(0.0f, 0.0f, 0.0f);
         glBegin(GL_LINES);
-        glVertex2f(140, 285);
-        glVertex2f(140, 250);
+        glVertex2f(210, 285);
+        glVertex2f(210, 250);
         glEnd();
 
         glLineWidth(2);
         glColor3f(0.0f, 0.0f, 0.0f);
         glBegin(GL_LINES);
-        glVertex2f(150, 285);
-        glVertex2f(155, 256);
+        glVertex2f(165, 285);
+        glVertex2f(160, 253);
         glEnd();
         //door lines
         glLineWidth(1);
         glColor3f(0.0f, 0.0f, 0.0f);
         glBegin(GL_LINES);
-        glVertex2f(110, 210);
-        glVertex2f(110, 250);
+        glVertex2f(172, 210);
+        glVertex2f(172, 250);
         glEnd();
 
         glLineWidth(1);
         glColor3f(0.0f, 0.0f, 0.0f);
         glBegin(GL_LINES);
-        glVertex2f(140, 210);
-        glVertex2f(140, 250);
+        glVertex2f(210, 210);
+        glVertex2f(210, 250);
         glEnd();
 
 
@@ -1713,20 +1713,104 @@ void drawDawnScene() {
         //wheels
         //Left White Wheel Circle
         glColor3f(1.0f, 1.0f, 1.0f);
-        drawCircle(96.0f, 203.0f, 13.0f);
+        drawCircle(155.0f, 203.0f, 13.0f);
         //LEft Inner Black Wheel Circle
         glColor3f(0.0f, 0.0f, 0.0f);
-        drawCircle(96.0f, 203.0f, 8.0f);
+        drawCircle(155.0f, 203.0f, 8.0f);
         //Right Black Wheel Circle
         glColor3f(1.0f, 1.0f, 1.0f);
-        drawCircle(160.0f, 203.0f, 13.0f);
+        drawCircle(215.0f, 203.0f, 13.0f);
         //Right Inner White Wheel Circle
         glColor3f(0.0f, 0.0f, 0.0f);
-        drawCircle(160.0f, 203.0f, 8.0f);
+        drawCircle(215.0f, 203.0f, 8.0f);
 
     glPopMatrix();
 
 
+
+        //Batmobile
+
+        //body
+        glColor3f(0.13f, 0.13f, 0.13f);
+        glBegin(GL_POLYGON);
+        glVertex2f(60, 200);
+        glVertex2f(53, 210);
+        glVertex2f(30, 255);
+        glVertex2f(35, 260);
+        glVertex2f(140, 250);
+        glVertex2f(205, 240);
+        glVertex2f(210, 233);
+        glVertex2f(215, 200);
+        glEnd();
+
+
+        //Head
+        glColor3f(0.13f, 0.13f, 0.13f);
+        glBegin(GL_POLYGON);
+        glVertex2f(62, 250);
+        glVertex2f(70, 260);
+        glVertex2f(75, 275);
+        glVertex2f(130, 266);
+        glVertex2f(135, 262);
+        glVertex2f(140, 250);
+        glEnd();
+
+        //back fang
+        glColor3f(0.067f, 0.016f, 0.158f);
+        glBegin(GL_POLYGON);
+        glVertex2f(30, 255);
+        glVertex2f(26, 250);
+        glVertex2f(40, 245);
+        glVertex2f(30, 240);
+        glVertex2f(50, 235);
+        glVertex2f(32, 230);
+        glVertex2f(60, 225);
+        glVertex2f(35, 220);
+        glVertex2f(70, 215);
+        glVertex2f(38, 210);
+        glVertex2f(80, 205);
+        glEnd();
+
+        //Shadows
+        glColor3f(0.05f, 0.05f, 0.05f);
+        glBegin(GL_QUADS);
+        glVertex2f(30, 255);
+        glVertex2f(60, 200);
+        glVertex2f(210, 200);
+        glVertex2f(130, 240);
+        glEnd();
+
+        //wheels
+        //Left White Wheel Circle
+        glColor3f(0.0f, 0.0f, 0.0f);
+        drawCircle(80.0f, 202.0f, 12.0f);
+        //LEft Inner Black Wheel Circle
+        glColor3f(0.3f, 0.3f, 0.3f);
+        drawCircle(80.0f, 202.0f, 7.0f);
+        //Right Black Wheel Circle
+        glColor3f(0.0f, 0.0f, 0.0f);
+        drawCircle(180.0f, 202.0f, 12.0f);
+        //Right Inner White Wheel Circle
+        glColor3f(0.3f, 0.3f, 0.3f);
+        drawCircle(180.0f, 202.0f, 7.0f);
+
+        //windows
+        glColor3f(0.396f, 0.339f, 0.491f);
+        glBegin(GL_QUADS);
+        glVertex2f(107, 268);
+        glVertex2f(133, 263);
+        glVertex2f(139, 248);
+        glVertex2f(100, 250);
+        glEnd();
+
+        //window shadow
+        glColor3f(0.296f, 0.239f, 0.391f);
+        glBegin(GL_QUADS);
+        glVertex2f(103, 258);
+        glVertex2f(133, 253);
+        glVertex2f(139, 248);
+        glVertex2f(100, 250);
+        glEnd();
 
 
     glutSwapBuffers();
@@ -3206,6 +3290,9 @@ void drawNightScene() {
 
     glPopMatrix();
 
+    //batmobile
+
+
     // car
         glPushMatrix();
         glTranslatef(carX, 0.0f, 0.0f);
@@ -3214,59 +3301,59 @@ void drawNightScene() {
         // Car1 pink body
         glColor3f(0.3f, 0.15f, 0.4f);
         glBegin(GL_POLYGON);
-        glVertex2f(75, 290);
+        glVertex2f(235, 290);
         glVertex2f(155, 290);
-        glVertex2f(165, 260);
-        glVertex2f(180, 250);
-        glVertex2f(180, 210);
-        glVertex2f(75, 210);
+        glVertex2f(145, 260);
+        glVertex2f(130, 250);
+        glVertex2f(130, 210);
+        glVertex2f(235, 210);
         glEnd();
 
         //bumper
         glColor3f(0.15f, 0.1f, 0.25f);
-        drawRectangle(73,205,108,5);
+        drawRectangle(128,205,108,5);
 
         //Left Window
        glColor3f(0.4f, 0.3f, 0.2f);
         glBegin(GL_QUADS);
-        glVertex2f(80, 285);
-        glVertex2f(140, 285);
-        glVertex2f(140, 250);
-        glVertex2f(80, 250);
+        glVertex2f(230, 285);
+        glVertex2f(170, 285);
+        glVertex2f(170, 250);
+        glVertex2f(230, 250);
         glEnd();
 
         //Yellow Shadow
         glBegin(GL_QUADS);
         glColor3f(0.35f, 0.25f, 0.15f);
-        glVertex2f(80, 250);
-        glVertex2f(140, 250);
-        glVertex2f(140, 260);
-        glVertex2f(80, 260);
+        glVertex2f(230, 250);
+        glVertex2f(170, 250);
+        glVertex2f(170, 260);
+        glVertex2f(230, 260);
         glEnd();
 
         //Right Window
         glColor3f(0.4f, 0.3f, 0.2f);
         glBegin(GL_POLYGON);
-        glVertex2f(140, 250);
+        glVertex2f(170, 250);
         glVertex2f(155, 260);
-        glVertex2f(165, 260);
-        glVertex2f(157, 285);
-        glVertex2f(140, 285);
+        glVertex2f(145, 260);
+        glVertex2f(153, 285);
+        glVertex2f(170, 285);
         glEnd();
         //yellow shadow
         glBegin(GL_QUADS);
         glColor3f(0.35f, 0.25f, 0.15f);
-        glVertex2f(140, 250);
+        glVertex2f(170, 250);
         glVertex2f(155, 255);
         glVertex2f(155, 265);
-        glVertex2f(140, 260);
+        glVertex2f(170, 260);
         glEnd();
 
         glBegin(GL_QUADS);
         glColor3f(0.35f, 0.25f, 0.15f);
         glVertex2f(155, 255);
-        glVertex2f(165, 260);
-        glVertex2f(162, 270);
+        glVertex2f(145, 260);
+        glVertex2f(148, 270);
         glVertex2f(155, 265);
         glEnd();
 
@@ -3274,31 +3361,31 @@ void drawNightScene() {
         glLineWidth(1);
         glColor3f(0.6f, 0.6f, 0.7f);
         glBegin(GL_LINES);
-        glVertex2f(97, 270);
-        glVertex2f(100, 260);
+        glVertex2f(215, 270);
+        glVertex2f(218, 260);
         glEnd();
 
         glLineWidth(1);
         glColor3f(0.6f, 0.6f, 0.7f);
         glBegin(GL_LINES);
-        glVertex2f(100, 275);
-        glVertex2f(105, 260);
+        glVertex2f(210, 275);
+        glVertex2f(214, 260);
         glEnd();
 
          //Stripes On glass
         glLineWidth(1);
         glColor3f(0.6f, 0.6f, 0.7f);
         glBegin(GL_LINES);
-        glVertex2f(130, 270);
-        glVertex2f(133, 260);
+        glVertex2f(170, 270);
+        glVertex2f(173, 260);
 
         glEnd();
 
         glLineWidth(1);
         glColor3f(0.6f, 0.6f, 0.7f);
         glBegin(GL_LINES);
-        glVertex2f(133, 275);
-        glVertex2f(138, 260);
+        glVertex2f(173, 275);
+        glVertex2f(178, 260);
         glEnd();
 
 
@@ -3306,8 +3393,8 @@ void drawNightScene() {
         glLineWidth(5);
         glColor3f(0.1f, 0.1f, 0.1f);
         glBegin(GL_LINES);
-        glVertex2f(113, 243);
-        glVertex2f(122, 243);
+        glVertex2f(175, 243);
+        glVertex2f(184, 243);
         glEnd();
 
 
@@ -3315,36 +3402,36 @@ void drawNightScene() {
         glLineWidth(3);
         glColor3f(0.1f, 0.1f, 0.1f);
         glBegin(GL_LINES);
-        glVertex2f(110, 285);
-        glVertex2f(110, 250);
+        glVertex2f(172, 285);
+        glVertex2f(172, 250);
         glEnd();
 
         glLineWidth(3);
         glColor3f(0.1f, 0.1f, 0.1f);
         glBegin(GL_LINES);
-        glVertex2f(140, 285);
-        glVertex2f(140, 250);
+        glVertex2f(210, 285);
+        glVertex2f(210, 250);
         glEnd();
 
         glLineWidth(2);
         glColor3f(0.1f, 0.1f, 0.1f);
         glBegin(GL_LINES);
-        glVertex2f(150, 285);
-        glVertex2f(155, 256);
+        glVertex2f(165, 285);
+        glVertex2f(160, 253);
         glEnd();
         //door lines
         glLineWidth(1);
         glColor3f(0.1f, 0.1f, 0.1f);
         glBegin(GL_LINES);
-        glVertex2f(110, 210);
-        glVertex2f(110, 250);
+        glVertex2f(172, 210);
+        glVertex2f(172, 250);
         glEnd();
 
         glLineWidth(1);
         glColor3f(0.1f, 0.1f, 0.1f);
         glBegin(GL_LINES);
-        glVertex2f(140, 210);
-        glVertex2f(140, 250);
+        glVertex2f(210, 210);
+        glVertex2f(210, 250);
         glEnd();
 
 
@@ -3352,16 +3439,16 @@ void drawNightScene() {
         //wheels
         //Left White Wheel Circle
         glColor3f(0.6f, 0.6f, 0.7f);
-        drawCircle(96.0f, 203.0f, 13.0f);
+        drawCircle(155.0f, 203.0f, 13.0f);
         //LEft Inner Black Wheel Circle
         glColor3f(0.1f, 0.1f, 0.1f);
-        drawCircle(96.0f, 203.0f, 8.0f);
+        drawCircle(155.0f, 203.0f, 8.0f);
         //Right Black Wheel Circle
         glColor3f(0.6f, 0.6f, 0.7f);
-        drawCircle(160.0f, 203.0f, 13.0f);
+        drawCircle(215.0f, 203.0f, 13.0f);
         //Right Inner White Wheel Circle
         glColor3f(0.1f, 0.1f, 0.1f);
-        drawCircle(160.0f, 203.0f, 8.0f);
+        drawCircle(215.0f, 203.0f, 8.0f);
 
     glPopMatrix();
 
@@ -3433,7 +3520,12 @@ void update(int value) {
 
     busX -= 5.0f;
     if (busX < -1000.0f) {
-        busX = 300.0f;
+        busX = 1200.0f;
+    }
+
+    carX -= 5.0f;
+    if (carX < -1000.0f) {
+        carX = 1200.0f;
     }
 
     cloud2X -= 5.0f;
