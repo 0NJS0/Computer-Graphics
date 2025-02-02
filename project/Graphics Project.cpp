@@ -3929,6 +3929,12 @@ void handleKeypress(unsigned char key, int x, int y) {
         }
        glutPostRedisplay();
     }
+
+    if (key == 'r' || key == 'R') {
+            batmobile=200.0f;
+           glutPostRedisplay();
+        }
+
 }
 
     void handleKeyRelease(unsigned char key, int x, int y) {
@@ -3970,6 +3976,16 @@ void update(int value) {
         batmobileautomove=true;
        batmobile += 15.0f;
         glutPostRedisplay();
+    }
+
+    else if (!batsignal && batmobileautomove) {
+        if (batmobile > 1000.0f) {
+            batmobile = -250.0f;
+            if(batmobile>300.0f){
+                batmobileautomove=false;
+            }
+
+        }
     }
 
     if(sunMovement)
@@ -4043,10 +4059,11 @@ void init(){
 }
 
 int main(int argc, char **argv) {
-    cout<<"press Mouse Left Button to change time of scenary"<<endl;
-    cout<<"press A/D to Move the batmobile"<<endl;
-    cout<<"press W/S to Move control the Plane"<<endl;
-    cout<<"press L to Turn on batsignal"<<endl;
+    cout<<"press Mouse Left Button to change time of scenary(Gotham)"<<endl;
+    cout<<"press A/D to Move the batmobile(gotham)"<<endl;
+    cout<<"press W/S to Move control the Plane(gotham)"<<endl;
+    cout<<"press L to Turn on Batsignal(Gotham)"<<endl;
+    cout<<"press r to Reset Car Location (Gotham)"<<endl;
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(1920, 1080);
