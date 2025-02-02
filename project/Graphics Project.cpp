@@ -4,8 +4,12 @@
 #include <math.h>
 using namespace std;
 
+bool batmobileautomove=false;
+bool batmobilemoveforware=false;
+bool planeMovement=true;
 bool sunMovement = true;
-bool currentScene = true;
+int currentScene = 1;
+bool batsignal=false;
 float cloud1X = 500.0f;
 float cloud2X = 850.0f;
 float sunY=600.0f;
@@ -14,6 +18,9 @@ float busX= 0.0f;
 float birdX = 0.0f;
 float birdWingAngle = 0.0f;
 bool birdWingDirection = true;
+float batmobile=0.0f;
+float planeX=0.0f;
+float planeY=0.0f;
 
 void drawCircle(float centerX, float centerY, float radius) {
     glBegin(GL_POLYGON);
@@ -27,6 +34,25 @@ void drawCircle(float centerX, float centerY, float radius) {
     glEnd();
 }
 
+void drawEllipse(float centerX, float centerY, float radiusX, float radiusY) {
+
+
+    glBegin(GL_TRIANGLE_FAN);
+
+    glVertex2f(centerX, centerY);
+
+
+    for (int i = 0; i <= 360; ++i) {
+        float theta = 2.0f * 3.1415926f * float(i) / float(360);
+
+        float x = radiusX * cosf(theta);
+        float y = radiusY * sinf(theta);
+
+        glVertex2f(x + centerX, y + centerY);
+    }
+
+    glEnd();
+}
 
 void quad(float ax, float ay, float bx, float by, float cx, float cy, float dx, float dy)
 {
@@ -103,6 +129,7 @@ void drawDawnScene() {
     drawCircle(250.0f, 850.0f, 35.0f);
     drawCircle(210.0f, 850.0f, 25.0f);
     glPopMatrix();
+
 
     //right cloud
     glPushMatrix();
@@ -1000,6 +1027,59 @@ void drawDawnScene() {
         glVertex2f(933,850);
         glEnd();
 
+        //drawRectangle(870.0f, 0.0f, 120.0f, 750.0f);
+
+        //W logo
+         glBegin(GL_QUADS);
+        glColor3f(0.686f, 0.667f, 0.976f);
+        glVertex2f(900,700);
+        glVertex2f(920,700);
+        glVertex2f(920,690);
+        glVertex2f(900,690);
+        glEnd();
+
+         glBegin(GL_QUADS);
+        glVertex2f(900,700);
+        glVertex2f(910,700);
+        glVertex2f(910,650);
+        glVertex2f(900,650);
+        glEnd();
+
+        glBegin(GL_QUADS);
+        glVertex2f(900,650);
+        glVertex2f(910,650);
+        glVertex2f(930,635);
+        glVertex2f(930,625);
+        glEnd();
+
+        glBegin(GL_QUADS);
+        glVertex2f(925,628);
+        glVertex2f(925,690);
+        glVertex2f(935,690);
+        glVertex2f(935,628);
+        glEnd();
+
+        glBegin(GL_QUADS);
+        glVertex2f(960,650);
+        glVertex2f(950,650);
+        glVertex2f(930,635);
+        glVertex2f(930,625);
+        glEnd();
+
+        glBegin(GL_QUADS);
+        glVertex2f(960,700);
+        glVertex2f(950,700);
+        glVertex2f(950,650);
+        glVertex2f(960,650);
+        glEnd();
+
+        glBegin(GL_QUADS);
+        glVertex2f(960,700);
+        glVertex2f(940,700);
+        glVertex2f(940,690);
+        glVertex2f(960,690);
+        glEnd();
+
     //6th Building with glasses
         //left glass
         glColor3f(0.686f, 0.667f, 0.976f);
@@ -1729,7 +1809,8 @@ void drawDawnScene() {
 
 
         //Batmobile
-
+        glPushMatrix();
+        glTranslatef(batmobile, 0.0f, 0.0f);
         //body
         glColor3f(0.13f, 0.13f, 0.13f);
         glBegin(GL_POLYGON);
@@ -1812,6 +1893,23 @@ void drawDawnScene() {
         glVertex2f(100, 250);
         glEnd();
 
+        //windows stripes
+        glLineWidth(1);
+        glColor3f(0.803f, 0.717f, 1.0f);
+        glBegin(GL_LINES);
+        glVertex2f(119, 261);
+        glVertex2f(125, 259);
+        glEnd();
+
+        glLineWidth(1);
+        glColor3f(0.803f, 0.717f, 1.0f);
+        glBegin(GL_LINES);
+        glVertex2f(118, 258);
+        glVertex2f(129, 255);
+        glEnd();
+
+
+    glPopMatrix();
 
     glutSwapBuffers();
 }
@@ -1842,6 +1940,141 @@ void drawNightScene() {
     glColor3f(0.956f, 0.89f, 0.896f);
     drawCircle(900.f, 0.0f, 33.0f);
 
+
+    //batsingal
+        if(batsignal)
+        {
+        //light ray
+        glColor3f(0.756f, 0.79f, 0.896f);
+        glBegin(GL_TRIANGLES);
+        glVertex2f(280, 800);
+        glVertex2f(440, 850);
+        glVertex2f(700,400);
+        glEnd();
+
+        glColor3f(0.956f, 0.89f, 0.896f);
+        drawEllipse(350.0f,850.0f,90,90);//yellow light
+
+        glColor3f(0.0f, 0.0f, 0.0f);
+        //black signal light
+        drawEllipse(350.0f,850.0f,80,60);
+
+        glColor3f(0.956f, 0.89f, 0.896f);
+        drawEllipse(350.0f,910.0f,10,7);//head
+        //left wing
+        drawEllipse(310.0f,890.0f,20,20);//upper
+        drawEllipse(330.0f,900.0f,9,20);//ear
+        drawEllipse(300.0f,800.0f,10,18);//lower left
+        drawEllipse(320.0f,805.0f,15,28);//lower right
+        drawEllipse(325.0f,803.0f,20,28);//lower tail
+        drawEllipse(342.0f,790.0f,7,25);//bottom tail
+
+        //Right Wing
+        drawEllipse(390.0f,890.0f,20,20);//upper
+        drawEllipse(370.0f,900.0f,9,20);//ear
+        drawEllipse(400.0f,800.0f,10,18);//lower left
+        drawEllipse(380.0f,805.0f,15,28);//lower right
+        drawEllipse(375.0f,803.0f,20,28);//lower tail
+        drawEllipse(357.0f,790.0f,7,25);//bottom tail
+        }
+
+    //Plane
+
+         glPushMatrix();
+    glTranslatef(planeX, planeY, 0.0f);
+        //Back Wing
+        glColor3f(0.4f, 0.3f, 0.45f);
+        glBegin(GL_QUADS);
+        glVertex2f(560, 810);
+        glVertex2f(535, 840);
+        glVertex2f(525, 843);
+        glVertex2f(540, 810);
+        glEnd();
+
+
+        //Plane Body
+        glColor3f(0.439f, 0.411f, 0.788f);
+        glBegin(GL_POLYGON);
+        glVertex2f(463, 800);
+        glVertex2f(610, 830);
+        glVertex2f(625, 815);
+        glVertex2f(627, 810);
+        glVertex2f(618, 795);
+        glVertex2f(497, 772);
+        glVertex2f(480, 785);
+        glEnd();
+
+        //shadow
+        glColor3f(0.294f, 0.274f, 0.604f);
+        glBegin(GL_QUADS);
+        glVertex2f(497, 772);
+        glVertex2f(482, 783);
+        glVertex2f(627, 813);
+        glVertex2f(618, 795);
+        glEnd();
+
+
+
+
+        //Plane Tail
+        glColor3f(0.4f, 0.3f, 0.45f);
+        glBegin(GL_POLYGON);
+        glVertex2f(473, 800);
+        glVertex2f(487, 803);
+        glVertex2f(482, 807);
+        glVertex2f(477, 807);
+        glVertex2f(465, 840);
+        glVertex2f(453, 845);
+        glVertex2f(463, 800);
+        glEnd();
+
+        //Tail Shadow
+        glColor3f(0.294f, 0.274f, 0.604f);
+        glBegin(GL_POLYGON);
+        glVertex2f(469, 807);
+        glVertex2f(461, 842);
+        glVertex2f(453, 845);
+        glVertex2f(463, 800);
+        glVertex2f(482, 783);
+        glVertex2f(485, 783);
+        glEnd();
+
+        //Forward Wing
+        glColor3f(0.4f, 0.3f, 0.45f);
+        glBegin(GL_POLYGON);
+        glVertex2f(565, 798);
+        glVertex2f(542, 740);
+        glVertex2f(527, 735);
+        glVertex2f(542, 785);
+        glVertex2f(540, 793);
+        glEnd();
+
+        //windows
+        glColor3f(0.984f, 0.714f, 0.682f);
+        drawCircle(560.0f, 805.0f, 5.0f);
+
+        drawCircle(545.0f, 802.0f, 5.0f);
+
+        drawCircle(530.0f, 799.0f, 5.0f);
+
+        drawCircle(515.0f, 796.0f, 5.0f);
+
+        drawCircle(500.0f, 793.0f, 5.0f);
+
+        drawCircle(575.0f, 808.0f, 5.0f);
+
+        drawCircle(590.0f, 811.0f, 5.0f);
+
+        //Front Window
+        glColor3f(0.984f, 0.714f, 0.682f);
+        glBegin(GL_QUADS);
+        glVertex2f(621, 819);
+        glVertex2f(610, 830);
+        glVertex2f(603, 829);
+        glVertex2f(604, 815);
+        glEnd();
+
+    glPopMatrix();
 
     // left cloud
     glPushMatrix();
@@ -1915,33 +2148,33 @@ void drawNightScene() {
         glEnd();
 
         //Windows
-        glColor3f(0.842f, 0.839f, 0.960f);
+       glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(50.0f,620.0f,10.0f,60.0f);
 
         glColor3f(0.4f, 0.39f, 0.76f);
         drawRectangle(65.0f,620.0f,10.0f,60.0f);
 
-        glColor3f(0.842f, 0.839f, 0.960f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(80.0f,620.0f,10.0f,60.0f);
 
         //2nd row
         glColor3f(0.4f, 0.39f, 0.76f);
         drawRectangle(50.0f,540.0f,10.0f,60.0f);
 
-        glColor3f(0.842f, 0.839f, 0.960f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(65.0f,540.0f,10.0f,60.0f);
 
         glColor3f(0.4f, 0.39f, 0.76f);
         drawRectangle(80.0f,540.0f,10.0f,60.0f);
 
         //3rd row
-        glColor3f(0.842f, 0.839f, 0.960f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(50.0f,460.0f,10.0f,60.0f);
 
         glColor3f(0.4f, 0.39f, 0.76f);
         drawRectangle(65.0f,460.0f,10.0f,60.0f);
 
-        glColor3f(0.842f, 0.839f, 0.960f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(80.0f,460.0f,10.0f,60.0f);
 
 
@@ -1951,71 +2184,71 @@ void drawNightScene() {
     drawRectangle(200.0f, 0.0f, 60.0f, 880.0f);
 
         //Windows
-        glColor3f(0.482f, 0.482f, 0.866f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(200.0f,840.0f,50.0f,16.0f);
 
         glColor3f(0.298f, 0.282f, 0.584f);
         drawRectangle(200.0f,800.0f,50.0f,16.0f);
 
-        glColor3f(0.482f, 0.482f, 0.866f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(200.0f,760.0f,50.0f,16.0f);
 
         glColor3f(0.298f, 0.282f, 0.584f);
         drawRectangle(200.0f,720.0f,50.0f,16.0f);
 
-        glColor3f(0.482f, 0.482f, 0.866f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(200.0f,680.0f,50.0f,16.0f);
 
-        glColor3f(0.298f, 0.282f, 0.584f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(200.0f,640.0f,50.0f,16.0f);
 
-        glColor3f(0.482f, 0.482f, 0.866f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(200.0f,600.0f,50.0f,16.0f);
 
         glColor3f(0.298f, 0.282f, 0.584f);
         drawRectangle(200.0f,560.0f,50.0f,16.0f);
 
-        glColor3f(0.482f, 0.482f, 0.866f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(200.0f,520.0f,50.0f,16.0f);
 
-        glColor3f(0.298f, 0.282f, 0.584f);
+       glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(200.0f,480.0f,50.0f,16.0f);
 
     //2nd Building
     glColor3f(0.15f, 0.1f, 0.3f);
     drawRectangle(120.0f, 0.0f, 80.0f, 900.0f);
     //Windows
-        glColor3f(0.482f, 0.482f, 0.866f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(125.0f,860.0f,70.0f,20.0f);
 
         glColor3f(0.298f, 0.282f, 0.584f);
         drawRectangle(125.0f,820.0f,70.0f,20.0f);
 
-        glColor3f(0.482f, 0.482f, 0.866f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(125.0f,780.0f,70.0f,20.0f);
 
-        glColor3f(0.298f, 0.282f, 0.584f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(125.0f,740.0f,70.0f,20.0f);
 
-        glColor3f(0.482f, 0.482f, 0.866f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(125.0f,700.0f,70.0f,20.0f);
 
         glColor3f(0.298f, 0.282f, 0.584f);
         drawRectangle(125.0f,660.0f,70.0f,20.0f);
 
-        glColor3f(0.482f, 0.482f, 0.866f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(125.0f,620.0f,70.0f,20.0f);
 
         glColor3f(0.298f, 0.282f, 0.584f);
         drawRectangle(125.0f,580.0f,70.0f,20.0f);
 
-        glColor3f(0.482f, 0.482f, 0.866f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(125.0f,540.0f,70.0f,20.0f);
 
-        glColor3f(0.298f, 0.282f, 0.584f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(125.0f,500.0f,70.0f,20.0f);
 
-        glColor3f(0.482f, 0.482f, 0.866f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(125.0f,460.0f,70.0f,20.0f);
     //5th building
         //building upper
@@ -2048,7 +2281,7 @@ void drawNightScene() {
 
         //Windows
         //1st row
-        glColor3f(0.463f, 0.427f, 0.847f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(640.0f, 810.0f, 100.0f, 30.0f);
         //lines
         glLineWidth(1);
@@ -2084,7 +2317,7 @@ void drawNightScene() {
         glEnd();
 
         //3rd row
-        glColor3f(0.463f, 0.427f, 0.847f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(640.0f, 710.0f, 100.0f, 30.0f);
         glLineWidth(1);
         glColor3f(0.0f, 0.0f, 0.0f);
@@ -2100,7 +2333,7 @@ void drawNightScene() {
         glVertex2f(710, 740);
         glEnd();
         //4th row
-        glColor3f(0.463f, 0.427f, 0.847f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(640.0f, 660.0f, 100.0f, 30.0f);
         glLineWidth(1);
         glColor3f(0.0f, 0.0f, 0.0f);
@@ -2132,7 +2365,7 @@ void drawNightScene() {
         glVertex2f(710, 640);
         glEnd();
         //6th row
-        glColor3f(0.463f, 0.427f, 0.847f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(640.0f, 560.0f, 100.0f, 30.0f);
         glLineWidth(1);
         glColor3f(0.0f, 0.0f, 0.0f);
@@ -2164,7 +2397,7 @@ void drawNightScene() {
         glVertex2f(710, 540);
         glEnd();
         //8th row
-        glColor3f(0.463f, 0.427f, 0.847f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(640.0f, 460.0f, 100.0f, 30.0f);
         glLineWidth(1);
         glColor3f(0.0f, 0.0f, 0.0f);
@@ -2180,7 +2413,7 @@ void drawNightScene() {
         glVertex2f(710, 490);
         glEnd();
         //9th row
-        glColor3f(0.463f, 0.427f, 0.847f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(640.0f, 410.0f, 100.0f, 30.0f);
         glLineWidth(1);
         glColor3f(0.0f, 0.0f, 0.0f);
@@ -2207,7 +2440,7 @@ void drawNightScene() {
 
 
         //11th row
-        glColor3f(0.463f, 0.427f, 0.847f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(640.0f, 310.0f, 100.0f, 30.0f);
         glLineWidth(1);
         glColor3f(0.0f, 0.0f, 0.0f);
@@ -2227,7 +2460,7 @@ void drawNightScene() {
         glEnd();
 
         //13 th row
-        glColor3f(0.463f, 0.427f, 0.847f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(640.0f, 210.0f, 100.0f, 30.0f);
         glLineWidth(1);
         glColor3f(0.0f, 0.0f, 0.0f);
@@ -2299,13 +2532,13 @@ void drawNightScene() {
         glEnd();
 
         //Left Block windows
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(380.0f, 630.0f, 15.0f, 45.0f);
 
         glColor3f(0.341f, 0.196f, 0.573f);
         drawRectangle(410.0f, 630.0f, 15.0f, 45.0f);
 
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(455.0f, 630.0f, 15.0f, 45.0f);
 
         glColor3f(0.341f, 0.196f, 0.573f);
@@ -2315,10 +2548,10 @@ void drawNightScene() {
         glColor3f(0.341f, 0.196f, 0.573f);
         drawRectangle(380.0f, 550.0f, 15.0f, 45.0f);
 
-       glColor3f(0.643f, 0.631f, 0.925f);
+       glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(410.0f, 550.0f, 15.0f, 45.0f);
 
-        glColor3f(0.341f, 0.196f, 0.573f);
+       glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(455.0f, 550.0f, 15.0f, 45.0f);
 
         glColor3f(0.341f, 0.196f, 0.573f);
@@ -2327,21 +2560,21 @@ void drawNightScene() {
         //3rd Row
 
 
-       glColor3f(0.643f, 0.631f, 0.925f);
+       glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(410.0f, 470.0f, 15.0f, 45.0f);
 
         glColor3f(0.341f, 0.196f, 0.573f);
         drawRectangle(455.0f, 470.0f, 15.0f, 45.0f);
 
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(485.0f, 470.0f, 15.0f, 45.0f);
 
         //4th row
 
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(410.0f, 390.0f, 15.0f, 45.0f);
 
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(455.0f, 390.0f, 15.0f, 45.0f);
 
         glColor3f(0.341f, 0.196f, 0.573f);
@@ -2353,20 +2586,20 @@ void drawNightScene() {
         glColor3f(0.341f, 0.196f, 0.573f);
         drawRectangle(410.0f, 310.0f, 15.0f, 45.0f);
 
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(455.0f, 310.0f, 15.0f, 45.0f);
 
         glColor3f(0.341f, 0.196f, 0.573f);
         drawRectangle(485.0f, 310.0f, 15.0f, 45.0f);
 
         //6th row
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(410.0f, 230.0f, 15.0f, 45.0f);
 
-        glColor3f(0.341f, 0.196f, 0.573f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(455.0f, 230.0f, 15.0f, 45.0f);
 
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(485.0f, 230.0f, 15.0f, 45.0f);
 
         //7th row
@@ -2374,35 +2607,35 @@ void drawNightScene() {
         glColor3f(0.341f, 0.196f, 0.573f);
         drawRectangle(410.0f, 150.0f, 15.0f, 45.0f);
 
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(455.0f, 150.0f, 15.0f, 45.0f);
 
-        glColor3f(0.341f, 0.196f, 0.573f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(485.0f, 150.0f, 15.0f, 45.0f);
 
         //8th row
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(410.0f, 70.0f, 15.0f, 45.0f);
 
         glColor3f(0.341f, 0.196f, 0.573f);
         drawRectangle(455.0f, 70.0f, 15.0f, 45.0f);
 
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(485.0f, 70.0f, 15.0f, 45.0f);
 
         //final row
         glColor3f(0.341f, 0.196f, 0.573f);
         drawRectangle(410.0f, -10.0f, 15.0f, 45.0f);
 
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(455.0f, -10.0f, 15.0f, 45.0f);
 
-        glColor3f(0.643f, 0.631f, 0.925f);
+       glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(485.0f, -10.0f, 15.0f, 45.0f);
         //Right block window
 
         //1st row
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(520.0f, 390.0f, 15.0f, 45.0f);
 
         glColor3f(0.341f, 0.196f, 0.573f);
@@ -2411,30 +2644,30 @@ void drawNightScene() {
         glColor3f(0.341f, 0.196f, 0.573f);
         drawRectangle(580.0f, 390.0f, 15.0f, 45.0f);
 
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(610.0f, 390.0f, 15.0f, 45.0f);
 
         //2nd row
         glColor3f(0.341f, 0.196f, 0.573f);
         drawRectangle(520.0f, 310.0f, 15.0f, 45.0f);
 
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(550.0f, 310.0f, 15.0f, 45.0f);
 
-        glColor3f(0.341f, 0.196f, 0.573f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(580.0f, 310.0f, 15.0f, 45.0f);
 
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(610.0f, 310.0f, 15.0f, 45.0f);
 
         //3rd row
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(520.0f, 230.0f, 15.0f, 45.0f);
 
         glColor3f(0.341f, 0.196f, 0.573f);
         drawRectangle(550.0f, 230.0f, 15.0f, 45.0f);
 
-        glColor3f(0.643f, 0.631f, 0.925f);
+       glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(580.0f, 230.0f, 15.0f, 45.0f);
 
         glColor3f(0.341f, 0.196f, 0.573f);
@@ -2444,7 +2677,7 @@ void drawNightScene() {
         glColor3f(0.341f, 0.196f, 0.573f);
         drawRectangle(520.0f, 150.0f, 15.0f, 45.0f);
 
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(550.0f, 150.0f, 15.0f, 45.0f);
 
         glColor3f(0.341f, 0.196f, 0.573f);
@@ -2454,13 +2687,13 @@ void drawNightScene() {
         drawRectangle(610.0f, 150.0f, 15.0f, 45.0f);
 
         //5th row
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(520.0f, 70.0f, 15.0f, 45.0f);
 
         glColor3f(0.341f, 0.196f, 0.573f);
         drawRectangle(550.0f, 70.0f, 15.0f, 45.0f);
 
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(580.0f, 70.0f, 15.0f, 45.0f);
 
         glColor3f(0.341f, 0.196f, 0.573f);
@@ -2470,13 +2703,13 @@ void drawNightScene() {
         glColor3f(0.341f, 0.196f, 0.573f);
         drawRectangle(520.0f, -10.0f, 15.0f, 45.0f);
 
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(550.0f, -10.0f, 15.0f, 45.0f);
 
         glColor3f(0.341f, 0.196f, 0.573f);
         drawRectangle(580.0f, -10.0f, 15.0f, 45.0f);
 
-        glColor3f(0.643f, 0.631f, 0.925f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(610.0f, -10.0f, 15.0f, 45.0f);
 
 
@@ -2553,7 +2786,7 @@ void drawNightScene() {
         drawRectangle(250,350,15,40);
         glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(275,350,15,40);
-        glColor3f(0.831f, 0.831f, 0.992f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(300,350,15,40);
         glColor3f(0.831f, 0.831f, 0.992f);
         drawRectangle(325,350,15,40);
@@ -2653,7 +2886,7 @@ void drawNightScene() {
         glVertex2f(150, 50);
         glEnd();
 
-        glColor3f(0.439f, 0.411f, 0.788f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(0,80,205,50);
 
         glLineWidth(1);
@@ -2682,7 +2915,7 @@ void drawNightScene() {
         glVertex2f(100, 290);
         glEnd();
 
-        glColor3f(0.541f, 0.498f, 0.968f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(0,320,205,50);
 
         glLineWidth(1);
@@ -2706,19 +2939,19 @@ void drawNightScene() {
         glEnd();
 
         //Windows1
-        glColor3f(0.294f, 0.274f, 0.604f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(885.0f, 0.0f, 15.0f, 730.0f);
 
         //Windows2
-        glColor3f(0.294f, 0.274f, 0.604f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(910.0f, 0.0f, 15.0f, 730.0f);
 
         //Windows3
-        glColor3f(0.294f, 0.274f, 0.604f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(935.0f, 0.0f, 15.0f, 730.0f);
 
         //Windows
-        glColor3f(0.294f, 0.274f, 0.604f);
+        glColor3f(0.984f, 0.714f, 0.682f);
         drawRectangle(960.0f, 0.0f, 15.0f, 730.0f);
 
         //Upper railing
@@ -2739,6 +2972,57 @@ void drawNightScene() {
         glVertex2f(928,850);
         glVertex2f(930.5,860);
         glVertex2f(933,850);
+        glEnd();
+
+          //W logo
+         glBegin(GL_QUADS);
+       glColor3f(0.956f, 0.89f, 0.896f);
+        glVertex2f(900,700);
+        glVertex2f(920,700);
+        glVertex2f(920,690);
+        glVertex2f(900,690);
+        glEnd();
+
+         glBegin(GL_QUADS);
+        glVertex2f(900,700);
+        glVertex2f(910,700);
+        glVertex2f(910,650);
+        glVertex2f(900,650);
+        glEnd();
+
+        glBegin(GL_QUADS);
+        glVertex2f(900,650);
+        glVertex2f(910,650);
+        glVertex2f(930,635);
+        glVertex2f(930,625);
+        glEnd();
+
+        glBegin(GL_QUADS);
+        glVertex2f(925,628);
+        glVertex2f(925,690);
+        glVertex2f(935,690);
+        glVertex2f(935,628);
+        glEnd();
+
+        glBegin(GL_QUADS);
+        glVertex2f(960,650);
+        glVertex2f(950,650);
+        glVertex2f(930,635);
+        glVertex2f(930,625);
+        glEnd();
+
+        glBegin(GL_QUADS);
+        glVertex2f(960,700);
+        glVertex2f(950,700);
+        glVertex2f(950,650);
+        glVertex2f(960,650);
+        glEnd();
+
+        glBegin(GL_QUADS);
+        glVertex2f(960,700);
+        glVertex2f(940,700);
+        glVertex2f(940,690);
+        glVertex2f(960,690);
         glEnd();
 
     //6th Building with glasses
@@ -3056,7 +3340,11 @@ void drawNightScene() {
         glVertex2f(907, 70);
         glVertex2f(937, 70);
         glEnd();
-    //Bus
+
+
+
+
+        //Bus
 
         glPushMatrix();
         glTranslatef(busX, 0.0f, 0.0f);
@@ -3225,14 +3513,14 @@ void drawNightScene() {
 
         //Stripes On glass
         glLineWidth(1);
-        glColor3f(1.0f, 1.0f, 1.0f);
+        glColor3f(0.6f, 0.6f, 0.7f);
         glBegin(GL_LINES);
         glVertex2f(740, 270);
         glVertex2f(730, 300);
         glEnd();
 
         glLineWidth(1);
-        glColor3f(1.0f, 1.0f, 1.0f);
+         glColor3f(0.6f, 0.6f, 0.7f);
         glBegin(GL_LINES);
         glVertex2f(735, 270);
         glVertex2f(728, 290);
@@ -3240,14 +3528,14 @@ void drawNightScene() {
 
         //Stripes On glass
         glLineWidth(1);
-        glColor3f(1.0f, 1.0f, 1.0f);
+         glColor3f(0.6f, 0.6f, 0.7f);
         glBegin(GL_LINES);
         glVertex2f(790, 270);
         glVertex2f(780, 300);
         glEnd();
 
         glLineWidth(1);
-        glColor3f(1.0f, 1.0f, 1.0f);
+         glColor3f(0.6f, 0.6f, 0.7f);
         glBegin(GL_LINES);
         glVertex2f(785, 270);
         glVertex2f(778, 290);
@@ -3308,6 +3596,7 @@ void drawNightScene() {
         glVertex2f(130, 210);
         glVertex2f(235, 210);
         glEnd();
+
 
         //bumper
         glColor3f(0.15f, 0.1f, 0.25f);
@@ -3434,7 +3723,14 @@ void drawNightScene() {
         glVertex2f(210, 250);
         glEnd();
 
-
+        //Front Light
+        glBegin(GL_QUADS);
+        glColor3f(0.956f, 0.89f, 0.896f);
+        glVertex2f(130, 250);
+        glVertex2f(130, 243);
+        glVertex2f(135, 243);
+        glVertex2f(135, 250);
+        glEnd();
 
         //wheels
         //Left White Wheel Circle
@@ -3452,6 +3748,132 @@ void drawNightScene() {
 
     glPopMatrix();
 
+    //Batmobile
+        glPushMatrix();
+        glTranslatef(batmobile, 0.0f, 0.0f);
+        //body
+        glColor3f(0.09f, 0.09f, 0.2f);
+        glBegin(GL_POLYGON);
+        glVertex2f(60, 200);
+        glVertex2f(53, 210);
+        glVertex2f(30, 255);
+        glVertex2f(35, 260);
+        glVertex2f(140, 250);
+        glVertex2f(205, 240);
+        glVertex2f(210, 233);
+        glVertex2f(215, 200);
+        glEnd();
+
+
+        //Head
+        glColor3f(0.09f, 0.09f, 0.2f);
+        glBegin(GL_POLYGON);
+        glVertex2f(62, 250);
+        glVertex2f(70, 260);
+        glVertex2f(75, 275);
+        glVertex2f(130, 266);
+        glVertex2f(135, 262);
+        glVertex2f(140, 250);
+        glEnd();
+
+        //back fang
+        glColor3f(0.06f, 0.06f, 0.12f);
+        glBegin(GL_POLYGON);
+        glVertex2f(30, 255);
+        glVertex2f(26, 250);
+        glVertex2f(40, 245);
+        glVertex2f(30, 240);
+        glVertex2f(50, 235);
+        glVertex2f(32, 230);
+        glVertex2f(60, 225);
+        glVertex2f(35, 220);
+        glVertex2f(70, 215);
+        glVertex2f(38, 210);
+        glVertex2f(80, 205);
+        glEnd();
+
+        //Shadows
+        glColor3f(0.06f, 0.06f, 0.12f);
+        glBegin(GL_QUADS);
+        glVertex2f(30, 255);
+        glVertex2f(60, 200);
+        glVertex2f(210, 200);
+        glVertex2f(130, 240);
+        glEnd();
+
+        //wheels
+        //Left White Wheel Circle
+        glColor3f(0.02f, 0.02f, 0.05f);
+        drawCircle(80.0f, 202.0f, 12.0f);
+        //LEft Inner Black Wheel Circle
+        glColor3f(0.28f, 0.28f, 0.35f);
+        drawCircle(80.0f, 202.0f, 7.0f);
+        //Right Black Wheel Circle
+        glColor3f(0.02f, 0.02f, 0.05f);
+        drawCircle(180.0f, 202.0f, 12.0f);
+        //Right Inner White Wheel Circle
+        glColor3f(0.28f, 0.28f, 0.35f);
+        drawCircle(180.0f, 202.0f, 7.0f);
+
+        //windows
+        glColor3f(0.35f, 0.29f, 0.45f);
+        glBegin(GL_QUADS);
+        glVertex2f(107, 268);
+        glVertex2f(133, 263);
+        glVertex2f(139, 248);
+        glVertex2f(100, 250);
+        glEnd();
+
+        //window shadow
+        glColor3f(0.26f, 0.21f, 0.36f);
+        glBegin(GL_QUADS);
+        glVertex2f(103, 258);
+        glVertex2f(133, 253);
+        glVertex2f(139, 248);
+        glVertex2f(100, 250);
+        glEnd();
+        //windows stripes
+        glLineWidth(1);
+        glColor3f(0.48f, 0.48f, 0.58f);
+        glBegin(GL_LINES);
+        glVertex2f(119, 261);
+        glVertex2f(125, 259);
+        glEnd();
+
+        glLineWidth(1);
+       glColor3f(0.48f, 0.48f, 0.58f);
+        glBegin(GL_LINES);
+        glVertex2f(118, 258);
+        glVertex2f(129, 255);
+        glEnd();
+
+        //Front Light
+        if(batmobilemoveforware && currentScene==2)
+        {
+        glColor3f(0.956f, 0.89f, 0.896f);
+        glBegin(GL_QUADS);
+        glVertex2f(205, 240);
+        glVertex2f(210, 233);
+        glVertex2f(195,233);
+        glVertex2f(195,242);
+        glEnd();
+        }
+
+        if(batsignal)
+        {
+        glColor3f(0.956f, 0.89f, 0.896f);
+        glBegin(GL_QUADS);
+        glVertex2f(205, 240);
+        glVertex2f(210, 233);
+        glVertex2f(195,233);
+        glVertex2f(195,242);
+        glEnd();
+        }
+
+
+
+    glPopMatrix();
+
 
 
 
@@ -3459,44 +3881,81 @@ void drawNightScene() {
 }
 
 void display() {
-    if (currentScene) {
+    if (currentScene==1) {
         drawDawnScene();
-    } else {
+    } else if(currentScene==2) {
         drawNightScene();
     }
 }
 
 void handleKeypress(unsigned char key, int x, int y) {
     if (key == 'd' || key == 'D') {
-       carX += 10.0f;
-        if (carX > 1000.0f) {
-            carX = -200.0f;
+        batmobilemoveforware=true;
+       batmobile += 15.0f;
+        if (batmobile > 1000.0f) {
+            batmobile = -200.0f;
         }
         glutPostRedisplay();
     }
 
     if (key == 'a' || key == 'A') {
-       carX -= 7.0f;
-        if (carX < -200.0f) {
-            carX = 1000.0f;
+        batmobilemoveforware=true;
+       batmobile -= 7.0f;
+        if (batmobile < -200.0f) {
+            batmobile = 1000.0f;
         }
         glutPostRedisplay();
     }
+
+     if (key == 'w' || key == 'W') {
+        planeMovement=true;
+        planeY+=5;
+        glutPostRedisplay();
+    }
+     if (key == 's' || key == 'S') {
+        planeMovement=false;
+       planeY -=5;
+       glutPostRedisplay();
+    }
+
+    if (key == 'l' || key == 'SL') {
+        if(!batsignal&& currentScene==2)
+        {
+        batsignal=true;
+
+        }
+        else{
+            batsignal=false;
+        }
+       glutPostRedisplay();
+    }
 }
+
+    void handleKeyRelease(unsigned char key, int x, int y) {
+        if (key == 'd' || key == 'D') {
+            batmobilemoveforware = false;
+            glutPostRedisplay();
+        }
+
+        if (key == 'a' || key == 'A') {
+            batmobilemoveforware = false;
+            glutPostRedisplay();
+        }
+    }
 
 void handleMouseClick(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-        if(currentScene)
+        if(currentScene==1)
         {
             sunY=600.0;
+            currentScene = 2;
             sunMovement=true;
-            currentScene = false;
             glutPostRedisplay();
         }
-        else{
+        else if(currentScene==2){
             sunY=600.0;
             sunMovement=true;
-            currentScene = true;
+            currentScene = 1;
             glutPostRedisplay();
         }
 
@@ -3504,6 +3963,14 @@ void handleMouseClick(int button, int state, int x, int y) {
 }
 
 void update(int value) {
+
+    if(batsignal)
+    {
+        batmobilemoveforware=true;
+        batmobileautomove=true;
+       batmobile += 15.0f;
+        glutPostRedisplay();
+    }
 
     if(sunMovement)
     {
@@ -3520,12 +3987,12 @@ void update(int value) {
 
     busX -= 5.0f;
     if (busX < -1000.0f) {
-        busX = 1200.0f;
+        busX = 1100.0f;
     }
 
     carX -= 5.0f;
     if (carX < -1000.0f) {
-        carX = 1200.0f;
+        carX = 1100.0f;
     }
 
     cloud2X -= 5.0f;
@@ -3549,11 +4016,23 @@ void update(int value) {
             birdWingDirection = true;
         }
     }
+    if(planeMovement)
+    {
+        planeY +=1.0f;
+    }
+    else{
+        planeY -=1.0f;
+    }
+    planeX += 5.0f;
 
 
+    if (planeX > 1000 || planeY >1000) {
+        planeX = -600.0f;
+        planeY = -150.0f;
+    }
 
     glutPostRedisplay();
-    glutTimerFunc(16, update, 0);
+    glutTimerFunc(10, update, 0);
 }
 
 void init(){
@@ -3564,6 +4043,10 @@ void init(){
 }
 
 int main(int argc, char **argv) {
+    cout<<"press Mouse Left Button to change time of scenary"<<endl;
+    cout<<"press A/D to Move the batmobile"<<endl;
+    cout<<"press W/S to Move control the Plane"<<endl;
+    cout<<"press L to Turn on batsignal"<<endl;
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(1920, 1080);
@@ -3572,6 +4055,7 @@ int main(int argc, char **argv) {
 
     glutDisplayFunc(display);
     glutKeyboardFunc(handleKeypress);
+    glutKeyboardUpFunc(handleKeyRelease);
     glutMouseFunc(handleMouseClick);
     glutTimerFunc(16, update, 0);
 
