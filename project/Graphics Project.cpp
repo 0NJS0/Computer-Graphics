@@ -3416,7 +3416,7 @@ void drawNightScene() {
         glVertex2f(700, 310);
         glEnd();
         //middle angular part
-        glColor3f(0.15f, 0.1f, 0.25f);
+        glColor3f(0.6f, 0.4f, 0.15f);
         glBegin(GL_QUADS);
         glVertex2f(715, 225);
         glVertex2f(750, 240);
@@ -3603,7 +3603,7 @@ void drawNightScene() {
         drawRectangle(128,205,108,5);
 
         //Left Window
-       glColor3f(0.4f, 0.3f, 0.2f);
+       glColor3f(0.7f, 0.5f, 0.15f);
         glBegin(GL_QUADS);
         glVertex2f(230, 285);
         glVertex2f(170, 285);
@@ -3613,7 +3613,7 @@ void drawNightScene() {
 
         //Yellow Shadow
         glBegin(GL_QUADS);
-        glColor3f(0.35f, 0.25f, 0.15f);
+        glColor3f(0.45f, 0.35f, 0.15f);
         glVertex2f(230, 250);
         glVertex2f(170, 250);
         glVertex2f(170, 260);
@@ -3621,7 +3621,7 @@ void drawNightScene() {
         glEnd();
 
         //Right Window
-        glColor3f(0.4f, 0.3f, 0.2f);
+        glColor3f(0.7f, 0.5f, 0.15f);
         glBegin(GL_POLYGON);
         glVertex2f(170, 250);
         glVertex2f(155, 260);
@@ -3631,7 +3631,7 @@ void drawNightScene() {
         glEnd();
         //yellow shadow
         glBegin(GL_QUADS);
-        glColor3f(0.35f, 0.25f, 0.15f);
+        glColor3f(0.45f, 0.35f, 0.15f);
         glVertex2f(170, 250);
         glVertex2f(155, 255);
         glVertex2f(155, 265);
@@ -3639,7 +3639,7 @@ void drawNightScene() {
         glEnd();
 
         glBegin(GL_QUADS);
-        glColor3f(0.35f, 0.25f, 0.15f);
+        glColor3f(0.45f, 0.35f, 0.15f);
         glVertex2f(155, 255);
         glVertex2f(145, 260);
         glVertex2f(148, 270);
@@ -3816,7 +3816,7 @@ void drawNightScene() {
         drawCircle(180.0f, 202.0f, 7.0f);
 
         //windows
-        glColor3f(0.35f, 0.29f, 0.45f);
+        glColor3f(0.7f, 0.4f, 1.0f);
         glBegin(GL_QUADS);
         glVertex2f(107, 268);
         glVertex2f(133, 263);
@@ -3825,7 +3825,7 @@ void drawNightScene() {
         glEnd();
 
         //window shadow
-        glColor3f(0.26f, 0.21f, 0.36f);
+        glColor3f(0.45f, 0.38f, 0.7f);
         glBegin(GL_QUADS);
         glVertex2f(103, 258);
         glVertex2f(133, 253);
